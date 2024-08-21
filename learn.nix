@@ -9,9 +9,6 @@ let
 
 # Now let's use some common Nix functions and APIs
 in rec {
-  # String manipulation
-  uppercaseString = builtins.toUpper myString;
-
   # List operations
   listLength = builtins.length myList;
   listHead = builtins.head myList;
@@ -21,7 +18,6 @@ in rec {
 
   # Force evaluation of all attributes
   result = {
-    uppercaseString = uppercaseString;
     listLength = listLength;
     listHead = listHead;
     incrementedNumber = incrementedNumber;
