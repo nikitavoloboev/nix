@@ -1,13 +1,9 @@
-# This is a basic Nix file for experimenting with different Nix APIs
-
-# Let's define some variables
 let
   myString = "Hello, Nix!";
   myNumber = 42;
   myList = [ 1 2 3 4 5 ];
   addOne = x: x + 1;
 
-# Now let's use some common Nix functions and APIs
 in rec {
   # List operations
   listLength = builtins.length myList;
