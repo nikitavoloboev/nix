@@ -81,3 +81,22 @@ outputs:
 ```
 
 ---
+
+using go with nix, build it:
+
+```
+cd go
+nix-build
+```
+
+can then run it with:
+
+```
+./result/bin/hello-go-nix Nikita
+```
+
+or
+
+```
+/nix/store/s5k7lqscjw1ghwnxkw8bqhl2qb3xazfz-hello-go-nix-0.1.0/bin/hello-go-nix Nikita
+```
