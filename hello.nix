@@ -3,7 +3,7 @@
 pkgs.stdenv.mkDerivation {
   name = "hello-nix";
   src = ./.;
-  buildInputs = [ pkgs.cowsay ];
+    buildInputs = [ pkgs.cowsay ];
 
   buildPhase = ''
     echo '${pkgs.cowsay}/bin/cowsay "Hello, Nix!"' > hello.sh
