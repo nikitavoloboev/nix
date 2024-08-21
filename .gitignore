@@ -1,0 +1,13 @@
+.DS_Store
+.env
+.env*.local
+# ts
+node_modules
+package-lock.json
+pnpm-lock.yaml
+.vercel
+# nix
+result
+# other
+private
+past-*
