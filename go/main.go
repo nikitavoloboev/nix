@@ -2,14 +2,25 @@ package main
 
 import (
 	"fmt"
-	"os"
+	"log"
+	"net/http"
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		fmt.Println("Please provide a name as an argument")
-		os.Exit(1)
+	http.HandleFunc("/", greetHandler)
+
+	port := "8080"
+	fmt.Printf("Server starting on port %s...\n", port)
+	if err := http.ListenAndServe(":"+port, nil); err != nil {
+		log.Fatal(err)
 	}
-	name := os.Args[1]
-	fmt.Printf("Hello, %s! Welcome to the world of Nix and Go.\n", name)
+}
+
+func greetHandler(w http.ResponseWriter, r *http.Request) {
+	name := r.URL.Query().Get("name")
+	if name == "" {
+		name = "Guest"
+	}
+	greeting := fmt.Sprintf("Hello, %s! Welcome to the world of Nix and Go.", name)
+	fmt.Fprint(w, greeting)
 }
