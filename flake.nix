@@ -1,6 +1,5 @@
 {
-  description = "A very basic flake";
-
+  description = "NixOS server flake";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
@@ -18,7 +17,7 @@
       let pkgs = nixpkgs.legacyPackages.${system};
       in {
         devShells.default = with pkgs; mkShell { };
-        packages = rec { httpServer = pkgs.callPackage ./go { }; };
+        packages = { httpServer = pkgs.callPackage ./go { }; };
         deploy.nodes.nixos = {
           hostname = "51.250.36.50";
           profiles.system = {
@@ -35,6 +34,11 @@
           modules = [
             ./yandex.nix
             ({ pkgs, ... }: {
+              programs.screen.enable = true;
+              environment.systemPackages = [
+                pkgs.neovim
+                (pkgs.python3Full.withPackages (ps: [ ps.pip ]))
+              ];
               networking.firewall.allowedTCPPorts = [ 8080 ];
               systemd.services = {
                 httpServer = {
