@@ -37,6 +37,11 @@
               programs.screen.enable = true;
               environment.systemPackages = [
                 pkgs.neovim
+                pkgs.git
+                pkgs.bat
+                pkgs.pm2
+                pkgs.nodejs_22
+                pkgs.bun
                 (pkgs.python3Full.withPackages (ps: [ ps.pip ]))
               ];
               networking.firewall.allowedTCPPorts = [ 8080 ];
